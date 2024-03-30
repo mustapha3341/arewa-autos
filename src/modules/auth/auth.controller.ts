@@ -1,0 +1,21 @@
+import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+@Controller('auth')
+export class AuthController {
+  @UseGuards(AuthGuard('local'))
+  @Post('/login')
+  async login(@Request() request) {
+    return request.user;
+  }
+
+  @Post('/signup')
+  async createAccount() {
+    return 'Signup Route';
+  }
+
+  @Post('/forgot-password')
+  async forgotPassword() {
+    return 'Forgot Password Route';
+  }
+}
